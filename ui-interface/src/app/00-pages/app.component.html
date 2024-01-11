@@ -1,0 +1,8 @@
+<div class="horizontal-layout bounded-by-parent" id="x">
+  <app-horizontal-title-img-view [interaction]="horizontalTitleImgViewInteraction"/>
+
+  @defer () {
+    <app-content-view-with-side-menu [interactions]="contentViewWithSideMenuInteractions"/>
+  }
+</div>
+

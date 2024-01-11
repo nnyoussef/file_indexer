@@ -1,0 +1,62 @@
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"/>
+<div class="weight-1">
+  <div class="vertical-layout bounded-by-parent">
+    <ng-container *ngTemplateOutlet="navMenu"/>
+    <ng-container *ngTemplateOutlet="navControlButton"/>
+    <ng-container *ngTemplateOutlet="navContent"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #navMenu>
+  <div #nav_menu_container
+       style="background: var(--content-background-level-2);transition: margin-left 300ms;width: 330px;overflow: auto;padding-top: 18px">
+
+    @for (row of navigationMenu(); track row.id) {
+      @if (row.childElements !== undefined && row.childElements.length >= 0) {
+        <ng-container *ngTemplateOutlet="collapsible;context: {parent: row,children: row.childElements}"/>
+      } @else {
+        <ng-container *ngTemplateOutlet="normalrow;context: {parent: row}"/>
+      }
+    }
+
+  </div>
+</ng-template>
+<ng-template #navControlButton>
+  <div style="background: white;width: 30px">
+    <button #nav_control_button (click)="toggleMenu()" class="navigation-menu-icon-button"
+            style="transition: transform 500ms">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</ng-template>
+<ng-template #navContent>
+  <div style="margin-left: 12px;overflow:auto;" class="weight-1">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+<ng-template #collapsible let-parent="parent" let-children="children">
+  <details style="margin: 12px">
+    <summary style="color:mediumvioletred;font-family: math;font-size: 14pt;width: 100%">{{ parent.title }}</summary>
+    @for (child of children; track child.id) {
+      <div class="list-item" style="margin-top: 14px;margin-left: 8px">
+      <span class="material-symbols-outlined"
+            style="display: inline-block;vertical-align: middle;color:darkcyan;font-size: 13pt;margin-left: 12.31px;padding-top: 8px;padding-bottom: 8px">{{ child.icon }}</span>
+        <a
+          style="display: inline-block;vertical-align: middle;color:darkcyan;font-family: math;font-size: 13pt;margin-left: 9px;text-decoration: none;padding-top: 8px;padding-bottom: 8px"
+          [routerLink]="child.routerLink" [queryParams]="{routedPageTitle: child.title}">{{ child.title }}</a>
+      </div>
+    }
+  </details>
+</ng-template>
+<ng-template #normalrow let-parent="parent">
+  <div style="margin-left: 12px;overflow:auto;" class="weight-1 list-item">
+  <span class="material-symbols-outlined"
+        style="display: inline-block;vertical-align: middle;color:mediumvioletred;font-size: 14pt;margin-left: 0;padding-top: 8px;padding-bottom: 8px">{{ parent.icon }}</span>
+    <a
+      style="display: inline-block;vertical-align: middle;color:mediumvioletred;font-family: math;font-size: 14pt;margin-left: 9px;text-decoration: none;padding-top: 8px;padding-bottom: 8px"
+      [routerLink]="parent.routerLink" [queryParams]="{routedPageTitle: parent.title}"> {{ parent.title }}</a>
+  </div>
+</ng-template>
+

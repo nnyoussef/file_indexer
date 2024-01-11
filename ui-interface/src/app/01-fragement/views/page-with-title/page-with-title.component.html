@@ -1,0 +1,8 @@
+<fieldset #fieldSetElement [ngStyle]=" {'border':'2px solid darkcyan','borderRadius':'12px','width':width()}">
+  <legend style="color: mediumvioletred">
+    <h2 style="margin: 2px;font-family: monospace;">{{ title() }}</h2>
+  </legend>
+  @defer {
+    <ng-content/>
+  }
+</fieldset>

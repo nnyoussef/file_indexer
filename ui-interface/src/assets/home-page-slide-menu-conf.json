@@ -1,0 +1,35 @@
+[
+  {
+    "id": "directoryViews",
+    "title": "Directory And Files Management",
+    "childElements": [
+      {
+        "id": "overview",
+        "title": "Dashboard",
+        "isClickable": true,
+        "icon": "dashboard",
+        "routerLink": ""
+      },
+      {
+        "id": "create",
+        "title": "Directory Create",
+        "isClickable": true,
+        "icon": "create_new_folder",
+        "routerLink": "directory/create"
+      },
+      {
+        "id": "create_file",
+        "title": "File Create",
+        "isClickable": true,
+        "icon": "upload_file",
+        "routerLink": "file/create"
+      }
+    ]
+  },
+  {
+    "id": "webApplications",
+    "title": "Web Application",
+    "icon": "apps",
+    "routerLink": "webApps/overview"
+  }
+]
