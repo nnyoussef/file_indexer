@@ -101,3 +101,4 @@ export class DirectoryCreateComponent extends BaseComponent {
     return Object.keys(errors).length === 0 ? null : errors;
   }
 }
+export class X {}

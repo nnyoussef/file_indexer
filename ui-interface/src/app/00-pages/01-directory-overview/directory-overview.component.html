@@ -41,17 +41,24 @@
         </th>
       </tr>
       </thead>
-      <tbody #body style="width: 1100px" appSelectableRowHighlighter highlighterCss="selectedRow">
+      <tbody style="width: 1100px" appSelectableRowHighlighter highlighterCss="selectedRow">
+      <tr style="width: 1100px">
+        <td colspan="4" (click)="goToRoot()" style="padding-top: 8px;">
+          <span
+            style="color: darkcyan;display: inline-block;vertical-align: middle;font-size: 16pt;padding-right: 8px"
+            class="material-symbols-outlined">arrow_back </span>{{currentDirectory()}}
+        </td>
+      </tr>
         @for (item of directoriesInfo(); track item.path; let index = $index) {
           <tr style="width: 1100px">
-            <td style="width: 520px">
+            <td style="width: 520px" (click)="onSubDirClicked(item.path)">
               {{ item.path }}
             </td>
             <td
-              style="padding-left: 24px;padding-right: 24px;width: 260px;text-align: center">{{ item.createdAt|javaLocaldatetimeFormatter }}
+              style="padding-left: 24px;padding-right: 24px;width: 260px;text-align: center">{{ item.create|javaLocaldatetimeFormatter }}
             </td>
             <td
-              style="padding-left: 24px;padding-right: 24px;width: 260px;text-align: center">{{ item.updatedAt|javaLocaldatetimeFormatter }}
+              style="padding-left: 24px;padding-right: 24px;width: 260px;text-align: center">{{ item.updated|javaLocaldatetimeFormatter }}
             </td>
             <td style="text-align: center;width: 100px">
               <span class="material-symbols-outlined" (click)="showDetails(index)"
@@ -63,6 +70,7 @@
             </td>
           </tr>
         }
+
       </tbody>
     </table>
   </div>

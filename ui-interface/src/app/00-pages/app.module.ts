@@ -14,7 +14,6 @@ import {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    CommonModule,
     BrowserModule,
     HorizontalTitleImgViewComponent,
     HttpClientModule,

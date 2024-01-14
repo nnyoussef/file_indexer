@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
     path: 'directory/create',
-    loadComponent: () => import('../00-pages/02-directory-create/directory-create.component').then(c => c.DirectoryCreateComponent)
+    loadComponent: () => import('../00-pages/02-directory-create/directory-create.component').then(c => c['DirectoryCreateComponent'])
   },
   {
     path: 'directory/overview',
