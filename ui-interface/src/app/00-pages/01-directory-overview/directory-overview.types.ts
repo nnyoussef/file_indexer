@@ -1,16 +1,20 @@
 import {Observable} from "rxjs";
 
 export type DirectoryOverviewModelFunctions = {
-  getAllDirectories: () => Observable<DirectoryInfo[]>,
+  getAllDirectories: () => Observable<DirectoryTree>,
+  getCurrentSelectedDirectoryTreeInfo: () => { path: string, labels: { [p: string]: string }, create: number[], updated: number[] }[]
 }
 
-export type DirectoryOverviewModelData = {}
-
-export type DirectoryInfo = {
-  path: string,
-  updatedAt: [],
-  createdAt: [],
-  labels: [{ key: string, value: string }]
+export type DirectoryOverviewModelData = {
+  directories: DirectoryTree,
+  currentSelectedPath: string,
+  currentSelectSubPath: { [p: string]: DirectoryTree }
 }
 
-export type DirectoryOverviewCoordinationFunctions = {}
+export type DirectoryTree = {
+  labels: { [p: string]: string },
+  subTree: { [p: string]: DirectoryTree },
+  created: number[],
+  updatedAt: number[]
+}
+

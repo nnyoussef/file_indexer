@@ -1,23 +1,24 @@
 import {BehaviorSubject, Subject} from "rxjs";
-import {DirectoryInfo} from "./01-directory-overview/directory-overview.types";
-export type AppDataModel = {
+import {DirectoryTree} from "./01-directory-overview/directory-overview.types";
+
+export declare  type AppDataModel = {
   globalData: {},
   availableDirectories: {
-    values: DirectoryInfo[],
+    values: DirectoryTree,
     dirty: boolean
   }
 }
 
 export type AppDataModelAccessor = {
-  storeDirectoriesInfo: (data: DirectoryInfo[]) => void,
-  getAllDirectories: () => DirectoryInfo[],
+  storeDirectoriesInfo: (data: DirectoryTree) => void,
+  getAllDirectories: () => DirectoryTree,
   setDirectoriesInfoDirtyState: (state: boolean) => void,
   getDirectoriesInfoDirtyState: () => boolean
 }
 
 export type AppInputs = {
-  storeDirectoriesInfo: Subject<DirectoryInfo[]>,
-  getAllDirectories: Subject<BehaviorSubject<DirectoryInfo[]>>,
+  storeDirectoriesInfo: Subject<DirectoryTree>,
+  getAllDirectories: Subject<BehaviorSubject<DirectoryTree>>,
   markDirectoriesAsDirty: Subject<void>,
   markDirectoriesAsClean: Subject<void>,
   getCurrentDirectoryDirtyState: Subject<Subject<boolean>>

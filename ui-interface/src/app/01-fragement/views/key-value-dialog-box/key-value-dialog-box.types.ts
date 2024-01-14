@@ -5,5 +5,5 @@ export type KeyValueDialogBoxInteractor = {
 }
 export type KeyValueDialogBoxParams = {
   data: { key: string, value: any }[],
-  title: string
+  title?: string
 }

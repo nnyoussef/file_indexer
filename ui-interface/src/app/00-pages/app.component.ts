@@ -12,8 +12,6 @@ import {
   HorizontalTitleImgViewInteraction
 } from "../01-fragement/views/horizontal-title-img-view/horizontal-title-img-view.type";
 
-let f;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
