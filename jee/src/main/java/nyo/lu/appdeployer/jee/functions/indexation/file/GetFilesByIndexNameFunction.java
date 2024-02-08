@@ -24,7 +24,7 @@ public class GetFilesByIndexNameFunction extends AbstractInteractor implements F
         List<Map<String, Map<String, String>>> must = input.indices.entrySet()
                 .stream()
                 .filter(e -> StringUtils.isNotEmpty(e.getValue()))
-                .map(e -> Map.of("wildcard", Map.of(e.getKey(), e.getValue().concat("*"))))
+                .map(e -> Map.of("wildcard", Map.of(e.getKey(), String.format("*%s*", e.getValue()))))
                 .toList();
 
         bool.put("must", must);
