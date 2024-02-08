@@ -1,0 +1,29 @@
+{
+  "name": "ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "compress": "gzipper compress --brotli ./dist ./out",
+    "clean": "rimraf  dist  out",
+    "include_404": "copyfiles ./dist/index.html ./dist/404 && move-file ./dist/404/dist/index.html ./dist/404.html && rimraf dist/404",
+    "deploy": " http-server ./out -b -c 0",
+    "prod": "npm run clean && npm run build &&  npm run include_404 && npm run compress && npm run deploy"
+  },
+  "dependencies": {
+    "axios-observable": "latest",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "copyfiles": "^2.4.1",
+    "gzipper": "^7.2.0",
+    "move-file-cli": "latest",
+    "rimraf": "latest",
+    "vite": "^5.0.10"
+  }
+}
