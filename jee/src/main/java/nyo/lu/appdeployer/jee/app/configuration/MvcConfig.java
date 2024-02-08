@@ -23,8 +23,8 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/webapps/**", "/webapps")
-                .addResourceLocations(format("file:/%s", appWebBasePath))
+        registry.addResourceHandler("/file_repo/**", "/file_repo")
+                .addResourceLocations(format("file:/%s//", appWebBasePath))
                 .setCacheControl(maxAge(30L, MINUTES))
                 .resourceChain(true)
                 .addResolver(new IndexHtmlPathResourceResolver());

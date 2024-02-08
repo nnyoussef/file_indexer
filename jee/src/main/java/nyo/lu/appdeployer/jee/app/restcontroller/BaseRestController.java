@@ -1,6 +1,7 @@
 package nyo.lu.appdeployer.jee.app.restcontroller;
 
 import nyo.lu.appdeployer.jee.app.configuration.ApplicationStorage;
+import nyo.lu.appdeployer.jee.functions.FunctionsChainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public class BaseRestController {
 
-    protected ApplicationStorage applicationStorage;
+    @Autowired
+    protected FunctionsChainer functionsChainer;
 
     @Autowired
-    public void setApplicationStorage(ApplicationStorage applicationStorage) {
-        this.applicationStorage = applicationStorage;
-    }
+    protected ApplicationStorage applicationStorage;
+
 }

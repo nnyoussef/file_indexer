@@ -10,8 +10,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import static org.springframework.http.HttpHeaders.CONTENT_ENCODING;
-
 @Component
 public class EncodedContentFilter extends OncePerRequestFilter {
 
@@ -20,6 +18,9 @@ public class EncodedContentFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        if (request.getRequestURL().toString().contains("console")) {
+            response.addHeader(HttpHeaders.CONTENT_ENCODING, "br");
+        }
         filterChain.doFilter(request, response);
     }
 }
