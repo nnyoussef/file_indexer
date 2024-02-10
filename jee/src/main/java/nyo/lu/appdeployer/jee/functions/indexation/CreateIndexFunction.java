@@ -20,6 +20,8 @@ public class CreateIndexFunction extends AbstractInteractor implements Function<
         try {
             elasticSearchApi.createIndex(indexingRequest.getIndexName());
             createDirectories(physicalPath);
+            Path indexDescriptionHtml = Path.of(applicationStorage.getBasepath(), indexingRequest.getIndexName().concat("_description.html"));
+            indexingRequest.getDescription().transferTo(indexDescriptionHtml);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

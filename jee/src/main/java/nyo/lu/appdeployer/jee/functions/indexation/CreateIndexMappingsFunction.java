@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 
 @Component
@@ -23,7 +24,8 @@ public class CreateIndexMappingsFunction extends AbstractInteractor implements F
             HashMap<String, Object> lastKnowSubField = elasticSearchMapping;
 
             for (String property : propertyPathComposition) {
-
+                if (Objects.equals(property, "undefined"))
+                    return;
                 if (lastKnowSubField.containsKey("properties")) {
 
                     if (((HashMap<String, Object>) lastKnowSubField.get("properties")).containsKey(property)) {

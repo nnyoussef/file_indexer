@@ -15,13 +15,14 @@ import java.util.function.Function;
 public class MoveFilesToDirectoryWithIndexNameFunction extends AbstractInteractor implements Function<Input, Input> {
     @Override
     public Input apply(Input input) {
-        Arrays.stream(input.files()).forEach(e -> {
-            try {
-                e.transferTo(Path.of(applicationStorage.getBasepath(), input.index(), e.getOriginalFilename()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        Arrays.stream(input.files())
+                .forEach(e -> {
+                    try {
+                        e.transferTo(Path.of(applicationStorage.getBasepath(), input.index(), e.getOriginalFilename()));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
         return input;
     }
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import axios from "axios";
 
 export default {
@@ -8,14 +8,15 @@ export default {
   data: () => ({
     indexName: ref(''),
     indexDescription: '',
-    mapping: reactive([''])
+    mapping: ['']
   }),
   methods: {
     createIndex() {
-      axios.post('http://localhost:8080/index_management/create/index', {
-        indexName: this.indexName,
-        mappings: this.mapping
-      });
+      const formData = new FormData();
+      formData.set('indexName', this.indexName);
+      formData.set('mappings', this.mapping);
+      formData.set('description', this.indexDescription);
+      axios.post('http://localhost:8080/index_management/create/index', formData);
     },
     addLabel() {
       this.mapping.push('');
@@ -42,16 +43,18 @@ export default {
         <table>
           <tr>
             <td style="vertical-align: bottom;" class="label">Index Name</td>
-            <td><input  v-model.lazy="this.indexName" class="input" type="text" min="8"
+            <td><input v-model.lazy="this.indexName" class="input" type="text" min="8"
                        maxlength="255"></td>
 
           </tr>
           <tr style="margin-top: 24px">
             <td style="vertical-align: baseline" class="label">Index Description</td>
-            <td> <textarea v-model.lazy="this.indexDescription" class="input"
-                           rows="20"
-                           style="margin-top: 0;height: auto"
-                           maxlength="1000"/></td>
+            <td><input class="input"
+                       @change="indexDescription=$event.target.files[0]"
+                       size="2000000"
+                       type="file"
+                       maxlength="1048576"
+                       style="margin-top: 0;height: auto"/></td>
           </tr>
         </table>
 
