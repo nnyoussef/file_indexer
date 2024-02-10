@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee;
+package lu.nyo.file_indexer.jee;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

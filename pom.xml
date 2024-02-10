@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>nyo.lu.appdeployer</groupId>
-    <artifactId>appdeployer</artifactId>
+    <artifactId>file_indexer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app deployer</name>
     <description>Parent</description>
