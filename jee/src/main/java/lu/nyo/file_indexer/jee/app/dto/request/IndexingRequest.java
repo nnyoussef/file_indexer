@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.dto.request;
+package lu.nyo.file_indexer.jee.app.dto.request;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.configuration;
+package lu.nyo.file_indexer.jee.app.configuration;
 
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;

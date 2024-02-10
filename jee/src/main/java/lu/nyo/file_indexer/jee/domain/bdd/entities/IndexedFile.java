@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.domain.bdd.entities;
+package lu.nyo.file_indexer.jee.domain.bdd.entities;
 
 import jakarta.persistence.*;
 

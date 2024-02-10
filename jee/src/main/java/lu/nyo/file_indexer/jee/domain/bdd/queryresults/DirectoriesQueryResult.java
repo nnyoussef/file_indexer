@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.domain.bdd.queryresults;
+package lu.nyo.file_indexer.jee.domain.bdd.queryresults;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

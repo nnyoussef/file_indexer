@@ -1,12 +1,11 @@
-package nyo.lu.appdeployer.jee.app.restcontroller;
+package lu.nyo.file_indexer.jee.app.restcontroller;
 
 import com.alibaba.fastjson.JSONObject;
 import jakarta.servlet.http.HttpServletResponse;
-import nyo.lu.appdeployer.jee.app.dto.request.IndexingRequest;
-import nyo.lu.appdeployer.jee.app.dto.response.exceptions.DirectoryManagementException;
-import nyo.lu.appdeployer.jee.functions.indexation.*;
-import nyo.lu.appdeployer.jee.functions.indexation.file.*;
-import nyo.lu.appdeployer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
+import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
+import lu.nyo.file_indexer.jee.functions.indexation.*;
+import lu.nyo.file_indexer.jee.functions.indexation.file.*;
+import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class IndexManagementRestController extends BaseRestController {
     @ResponseStatus(NO_CONTENT)
     public void createIndex(@RequestParam("indexName") String indexName,
                             @RequestParam("mappings") LinkedList<String> mappings,
-                            @RequestParam("description") MultipartFile description) throws DirectoryManagementException {
+                            @RequestParam("description") MultipartFile description) {
         IndexingRequest indexingRequest = new IndexingRequest();
         indexingRequest.setIndexName(indexName);
         indexingRequest.setMappings(mappings);

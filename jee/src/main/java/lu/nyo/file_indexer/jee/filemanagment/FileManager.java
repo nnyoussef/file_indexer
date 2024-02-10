@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.service.filemanagment;
+package lu.nyo.file_indexer.jee.filemanagment;
 
 import org.springframework.web.multipart.MultipartFile;
 

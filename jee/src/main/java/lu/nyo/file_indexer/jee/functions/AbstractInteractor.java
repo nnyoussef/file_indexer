@@ -1,9 +1,12 @@
-package nyo.lu.appdeployer.jee.functions;
+package lu.nyo.file_indexer.jee.functions;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nyo.lu.appdeployer.jee.app.configuration.ApplicationStorage;
-import nyo.lu.appdeployer.jee.domain.bdd.repository.*;
-import nyo.lu.appdeployer.jee.domain.rest.ElasticSearchApi;
+import lu.nyo.file_indexer.jee.app.configuration.ApplicationStorage;
+import lu.nyo.file_indexer.jee.domain.bdd.repository.IndexedFileRepository;
+import lu.nyo.file_indexer.jee.domain.bdd.repository.IndexesMappingRepository;
+import lu.nyo.file_indexer.jee.domain.bdd.repository.IndexesRepository;
+import lu.nyo.file_indexer.jee.domain.rest.ElasticSearchApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

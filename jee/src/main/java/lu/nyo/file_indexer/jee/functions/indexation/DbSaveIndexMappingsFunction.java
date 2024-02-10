@@ -1,7 +1,7 @@
-package nyo.lu.appdeployer.jee.functions.indexation;
+package lu.nyo.file_indexer.jee.functions.indexation;
 
-import nyo.lu.appdeployer.jee.domain.bdd.entities.IndexesMappingEntity;
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.domain.bdd.entities.IndexesMappingEntity;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

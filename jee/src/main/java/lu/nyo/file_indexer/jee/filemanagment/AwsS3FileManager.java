@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.service.filemanagment;
+package lu.nyo.file_indexer.jee.filemanagment;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

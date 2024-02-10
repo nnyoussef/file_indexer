@@ -1,7 +1,7 @@
-package nyo.lu.appdeployer.jee.functions.indexation.file;
+package lu.nyo.file_indexer.jee.functions.indexation.file;
 
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
-import nyo.lu.appdeployer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,8 +1,8 @@
-package nyo.lu.appdeployer.jee.functions.indexation.file;
+package lu.nyo.file_indexer.jee.functions.indexation.file;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
-import nyo.lu.appdeployer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

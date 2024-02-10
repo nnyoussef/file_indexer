@@ -1,6 +1,6 @@
-package nyo.lu.appdeployer.jee.functions.indexation.file;
+package lu.nyo.file_indexer.jee.functions.indexation.file;
 
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

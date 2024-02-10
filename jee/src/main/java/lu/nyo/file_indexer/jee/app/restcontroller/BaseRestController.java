@@ -1,7 +1,8 @@
-package nyo.lu.appdeployer.jee.app.restcontroller;
+package lu.nyo.file_indexer.jee.app.restcontroller;
 
-import nyo.lu.appdeployer.jee.app.configuration.ApplicationStorage;
-import nyo.lu.appdeployer.jee.functions.FunctionsChainer;
+
+import lu.nyo.file_indexer.jee.app.configuration.ApplicationStorage;
+import lu.nyo.file_indexer.jee.functions.FunctionsChainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
