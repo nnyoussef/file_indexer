@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.comon;
+package lu.nyo.file_indexer.jee.comon;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

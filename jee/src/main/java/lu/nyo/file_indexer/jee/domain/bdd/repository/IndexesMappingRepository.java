@@ -1,7 +1,7 @@
-package nyo.lu.appdeployer.jee.domain.bdd.repository;
+package lu.nyo.file_indexer.jee.domain.bdd.repository;
 
-import nyo.lu.appdeployer.jee.domain.bdd.entities.IndexesEntity;
-import nyo.lu.appdeployer.jee.domain.bdd.entities.IndexesMappingEntity;
+
+import lu.nyo.file_indexer.jee.domain.bdd.entities.IndexesMappingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

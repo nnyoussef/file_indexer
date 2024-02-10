@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.functions;
+package lu.nyo.file_indexer.jee.functions;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.configuration;
+package lu.nyo.file_indexer.jee.app.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

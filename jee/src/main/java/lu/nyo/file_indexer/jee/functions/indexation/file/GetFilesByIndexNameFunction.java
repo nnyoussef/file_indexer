@@ -1,6 +1,6 @@
-package nyo.lu.appdeployer.jee.functions.indexation.file;
+package lu.nyo.file_indexer.jee.functions.indexation.file;
 
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import static nyo.lu.appdeployer.jee.functions.indexation.file.GetFilesByIndexNameFunction.Input;
+import static lu.nyo.file_indexer.jee.functions.indexation.file.GetFilesByIndexNameFunction.Input;
 
 @Service
 @Lazy

@@ -1,6 +1,6 @@
-package nyo.lu.appdeployer.jee.functions.indexation;
+package lu.nyo.file_indexer.jee.functions.indexation;
 
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

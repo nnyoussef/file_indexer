@@ -1,7 +1,7 @@
-package nyo.lu.appdeployer.jee.functions.indexation;
+package lu.nyo.file_indexer.jee.functions.indexation;
 
-import nyo.lu.appdeployer.jee.functions.AbstractInteractor;
-import nyo.lu.appdeployer.jee.app.dto.request.IndexingRequest;
+import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

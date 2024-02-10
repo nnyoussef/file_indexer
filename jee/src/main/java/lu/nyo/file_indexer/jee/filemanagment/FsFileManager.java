@@ -1,6 +1,6 @@
-package nyo.lu.appdeployer.jee.service.filemanagment;
+package lu.nyo.file_indexer.jee.filemanagment;
 
-import nyo.lu.appdeployer.jee.app.configuration.ApplicationStorage;
+import lu.nyo.file_indexer.jee.app.configuration.ApplicationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.dto.response.exceptions;
+package lu.nyo.file_indexer.jee.app.dto.response.exceptions;
 
 import java.util.LinkedList;
 import java.util.List;

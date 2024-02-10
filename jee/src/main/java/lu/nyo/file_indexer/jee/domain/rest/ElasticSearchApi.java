@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.domain.rest;
+package lu.nyo.file_indexer.jee.domain.rest;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;

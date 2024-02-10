@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.dto.response;
+package lu.nyo.file_indexer.jee.app.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

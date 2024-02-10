@@ -1,4 +1,4 @@
-package nyo.lu.appdeployer.jee.app.configuration;
+package lu.nyo.file_indexer.jee.app.configuration;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.Resource;
