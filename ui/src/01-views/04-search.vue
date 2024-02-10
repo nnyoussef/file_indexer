@@ -33,7 +33,9 @@ export default {
     indexeIndicesMapping: {},
     searchCriteria: {},
     indexName: '',
-    files: ['No Content']
+    files: ['No Content'],
+    dateFrom: 0,
+    dateTo: Date.now()
   }),
   mounted() {
     axios.get('http://localhost:8080/index_management/get_all_indices').subscribe(e => {
@@ -52,8 +54,8 @@ export default {
     submit() {
       axios.post('http://localhost:8080/index_management/search_by_index_indices', {
         indexName: this.indexName,
-        dateFrom: '',
-        dateTo: '',
+        dateFrom: Date.parse(this.dateFrom),
+        dateTo: Date.parse(this.dateTo),
         data: this.searchCriteria
       }).subscribe((s) => {
         if (s.data.length === 0)
@@ -95,11 +97,11 @@ export default {
           <tr>
             <td style="padding-right: 12px" class="label">Date Range:</td>
             <td style="font-family: monospace;font-size: 10pt">
-              <input style="width: 200px;display: inline-block;vertical-align: middle" type="datetime-local">
+              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateFrom" type="datetime-local">
             </td>
             <td style="padding-left: 4px; padding-right: 4px">-</td>
             <td>
-              <input style="width: 200px;display: inline-block;vertical-align: middle" type="datetime-local">
+              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateTo" type="datetime-local">
             </td>
           </tr>
         </table>

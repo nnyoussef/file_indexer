@@ -1,12 +1,21 @@
 package nyo.lu.appdeployer.jee.app.configuration;
 
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.EncodedResourceResolver;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Long.MAX_VALUE;
 import static java.lang.String.format;
@@ -36,5 +45,29 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResolver(new IndexHtmlPathResourceResolver());
     }
 
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        WebMvcConfigurer.super.configureMessageConverters(converters);
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+        List<MediaType> mediaTypeList = new ArrayList<MediaType>();
+        mediaTypeList.add(new MediaType("application", "json", StandardCharsets.UTF_8));
+        mediaTypeList.add(new MediaType("application", "json", StandardCharsets.UTF_8));
+        mediaTypeList.add(new MediaType("text", "html", StandardCharsets.UTF_8));
+        fastConverter.setSupportedMediaTypes(mediaTypeList);
 
+        FastJsonConfig fastJsonConfig = getFastJsonConfig();
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        converters.add(fastConverter);
+    }
+
+    private static FastJsonConfig getFastJsonConfig() {
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setFeatures(Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames,
+                Feature.DisableCircularReferenceDetect);
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteNullStringAsEmpty);
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteDateUseDateFormat);
+        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        return fastJsonConfig;
+    }
 }
+

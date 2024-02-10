@@ -1,5 +1,6 @@
 package nyo.lu.appdeployer.jee.app.restcontroller;
 
+import com.alibaba.fastjson.JSONObject;
 import jakarta.servlet.http.HttpServletResponse;
 import nyo.lu.appdeployer.jee.app.dto.request.IndexingRequest;
 import nyo.lu.appdeployer.jee.app.dto.response.exceptions.DirectoryManagementException;
@@ -56,11 +57,11 @@ public class IndexManagementRestController extends BaseRestController {
     }
 
     @PostMapping("/search_by_index_indices")
-    public List<String> search(@RequestBody HashMap<String, Object> request) {
+    public List<String> search(@RequestBody JSONObject request) {
         String indexName = request.get("indexName").toString();
         String dateFrom = request.get("dateFrom").toString();
         String dateTo = request.get("dateTo").toString();
-        HashMap<String, String> data = ((HashMap<String, String>) request.get("data"));
+        Map<String, String> data = ((Map<String, String>) request.get("data"));
         GetFilesByIndexNameFunction.Input input = new GetFilesByIndexNameFunction.Input(indexName, dateFrom, dateTo, data);
         return functionsChainer.runWithResult(input, Collections.emptyList(), GetFilesByIndexNameFunction.class, FetchFilesByIdsFunction.class);
     }

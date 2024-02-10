@@ -2,12 +2,14 @@ package nyo.lu.appdeployer.jee.domain.bdd.entities;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "indexed_files")
 public class IndexedFile {
     @Id
     @Column(name = "file_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(name = "index_id")
