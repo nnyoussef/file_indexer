@@ -32,7 +32,6 @@ public class GetFilesByIndexNameFunction extends AbstractInteractor implements F
         bool.put("must", must);
         query.put("bool", bool);
         esRequestBody.put("query", query);
-        System.out.println(esRequestBody);
 
         return ((List) ((Map<String, Object>) elasticSearchApi.searchByIndexAndIndices(input.index, esRequestBody).get("hits")).get("hits")).stream()
                 .map(e -> ((Map<String, Object>) e).get("_id")).toList();
