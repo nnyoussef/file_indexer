@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +30,14 @@ public class IndexManagementRestController extends BaseRestController {
 
     @PostMapping(value = "/create/index")
     @ResponseStatus(NO_CONTENT)
-    public void createIndex(@RequestBody IndexingRequest indexingRequest) throws DirectoryManagementException {
+    public void createIndex(@RequestParam("indexName") String indexName,
+                            @RequestParam("mappings") LinkedList<String> mappings,
+                            @RequestParam("description") MultipartFile description) throws DirectoryManagementException {
+        IndexingRequest indexingRequest = new IndexingRequest();
+        indexingRequest.setIndexName(indexName);
+        indexingRequest.setMappings(mappings);
+        indexingRequest.setDescription(description);
+
         functionsChainer.run(indexingRequest,
                 IsIndexCreatedFunction.class,
                 CreateIndexFunction.class,
@@ -58,9 +65,9 @@ public class IndexManagementRestController extends BaseRestController {
 
     @PostMapping("/search_by_index_indices")
     public List<String> search(@RequestBody JSONObject request) {
-        String indexName = request.get("indexName").toString();
-        String dateFrom = request.get("dateFrom").toString();
-        String dateTo = request.get("dateTo").toString();
+        String indexName = request.getString("indexName");
+        String dateFrom = request.getString("dateFrom");
+        String dateTo = request.getString("dateTo");
         Map<String, String> data = ((Map<String, String>) request.get("data"));
         GetFilesByIndexNameFunction.Input input = new GetFilesByIndexNameFunction.Input(indexName, dateFrom, dateTo, data);
         return functionsChainer.runWithResult(input, Collections.emptyList(), GetFilesByIndexNameFunction.class, FetchFilesByIdsFunction.class);
@@ -80,4 +87,5 @@ public class IndexManagementRestController extends BaseRestController {
                 .toString());
         Files.copy(fullPath, response.getOutputStream());
     }
+
 }

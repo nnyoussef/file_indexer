@@ -97,11 +97,13 @@ export default {
           <tr>
             <td style="padding-right: 12px" class="label">Date Range:</td>
             <td style="font-family: monospace;font-size: 10pt">
-              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateFrom" type="datetime-local">
+              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateFrom"
+                     type="datetime-local">
             </td>
             <td style="padding-left: 4px; padding-right: 4px">-</td>
             <td>
-              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateTo" type="datetime-local">
+              <input style="width: 200px;display: inline-block;vertical-align: middle" v-model.lazy="dateTo"
+                     type="datetime-local">
             </td>
           </tr>
         </table>
@@ -116,7 +118,13 @@ export default {
               <option disabled selected>Select One</option>
               <option v-for="(item, index) in this.indexes" :id="index" :value="item">{{ item }}</option>
             </select></td>
-            <td><span class="material-symbols-outlined button unselectable" style="color: midnightblue">info</span></td>
+            <td>
+              <button popovertarget="indexDoc"
+                      v-if="indexName!==''"
+                      class="material-symbols-outlined button unselectable"
+                      style="color: midnightblue;background: none;border: none">info
+              </button>
+            </td>
           </tr>
         </table>
       </div>
@@ -155,7 +163,10 @@ export default {
       </div>
     </div>
 
+
   </div>
+  <iframe popover id="indexDoc" :src="`http://localhost:8080/file_repo/${indexName}_description.html`"
+          style="max-width: 90vw;height: 90vh;max-height: 90vh;overflow: auto;width: 90vw;"/>
 </template>
 
 
