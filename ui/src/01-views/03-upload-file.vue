@@ -89,11 +89,24 @@ export default {
         <p>Select Source Index</p>
       </div>
       <div class="formBody">
-        <select v-model.lazy="inputIndex" @change="onIndexChanged($event)"
-                style="display: inline-block;vertical-align: top;padding-right: 18px;border-radius: 6px;">
-          <option value="" selected disabled>Choose the source index</option>
-          <option v-for="(item, index) in this.indexesList" :id="index" :value="item">{{ item }}</option>
-        </select>
+        <table>
+          <tr>
+            <td>
+              <select v-model.lazy="inputIndex" @change="onIndexChanged($event)"
+                      style="display: inline-block;vertical-align: top;padding-right: 18px;border-radius: 6px;">
+                <option value="" selected disabled>Choose the source index</option>
+                <option v-for="(item, index) in this.indexesList" :id="index" :value="item">{{ item }}</option>
+              </select>
+            </td>
+            <td>
+              <button popovertarget="indexDoc"
+                      v-if="inputIndex!==''"
+                      class="material-symbols-outlined button unselectable"
+                      style="color: midnightblue;background: none;border: none">info
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -129,7 +142,10 @@ export default {
     </div>
 
   </div>
-
+  <iframe popover
+          id="indexDoc"
+          :src="`http://localhost:8080/file_repo/${inputIndex}_description.html`"
+          style="max-width: 90vw;height: 90vh;max-height: 90vh;overflow: auto;width: 90vw;"/>
 </template>
 
 <style scoped>

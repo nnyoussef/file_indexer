@@ -8,7 +8,7 @@ export default {
   data: () => ({
     indexName: ref(''),
     indexDescription: '',
-    mapping: ['']
+    mapping: []
   }),
   methods: {
     createIndex() {
@@ -22,8 +22,7 @@ export default {
       this.mapping.push('');
     },
     deleteMapping(index: number) {
-      if (this.mapping.length > 1)
-        this.mapping.splice(index, 1);
+      this.mapping.splice(index, 1);
     },
     resetMapping() {
       this.mapping = [''];
@@ -91,9 +90,9 @@ export default {
             <span style="display: inline-block; vertical-align: middle;" class="material-symbols-outlined unselectable">label</span>
             <input class="input" style="margin-top: 0;margin-left: 6px" v-model.lazy="this.mapping[index]" type="text"
                    maxlength="30" minlength="1" placeholder="Mapping key">
-            <span v-if="index > 0"
-                  style="display: inline-block; vertical-align: middle;margin-left: 24px;color: orangered;cursor: pointer"
-                  class="material-symbols-outlined unselectable" @click="this.deleteMapping(index)">delete</span>
+            <span
+                style="display: inline-block; vertical-align: middle;margin-left: 24px;color: orangered;cursor: pointer"
+                class="material-symbols-outlined unselectable" @click="this.deleteMapping(index)">delete</span>
           </div>
         </div>
       </div>
