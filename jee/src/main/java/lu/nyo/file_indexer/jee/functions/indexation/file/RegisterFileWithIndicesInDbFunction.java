@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 @Component
@@ -14,11 +15,11 @@ public class RegisterFileWithIndicesInDbFunction extends AbstractInteractor impl
     @Override
     public Void apply(Input input) {
         Long indexId = indexesRepository.findIndexIdByIndexName(input.requestinput.index());
-
+        AtomicInteger index = new AtomicInteger();
         List<IndexedFile> indexedFileList = Arrays.stream(input.requestinput.files())
                 .map(e -> {
                     IndexedFile indexedFile = new IndexedFile();
-                    indexedFile.setFileName(e.getOriginalFilename());
+                    indexedFile.setFileName(input.requestinput.getFileNameWithTimeStamp(index.getAndIncrement()));
                     indexedFile.setIndexId(indexId);
                     indexedFile.setIndicesRef(input.esReference);
                     return indexedFile;

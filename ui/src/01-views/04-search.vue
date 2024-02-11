@@ -162,10 +162,10 @@ export default {
         </div>
       </div>
     </div>
-
-
   </div>
-  <iframe popover id="indexDoc" :src="`http://localhost:8080/file_repo/${indexName}_description.html`"
+  <iframe popover
+          id="indexDoc"
+          :src="`http://localhost:8080/file_repo/${indexName}_description.html`"
           style="max-width: 90vw;height: 90vh;max-height: 90vh;overflow: auto;width: 90vw;"/>
 </template>
 
