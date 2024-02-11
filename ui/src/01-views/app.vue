@@ -33,14 +33,19 @@ const tabClicked = (selectedElPosition: number) => {
 <template>
   <div style="display: flex;flex-direction: column;height: 100%;min-height: 0;width: 100%">
     <div style="display: flex;align-items: center;">
-      <img style="margin-right: 24px" height="80" width="80" src="/logo.png" alt="File Indexer">
-      <img style="margin-right: 24px" height="104" width="90" src="/lux.png" alt="File Indexer">
+      <img style="margin-right: 24px" height="80" width="80" src="/logo.webp" alt="File Indexer">
+      <img style="margin-right: 24px" height="104" width="90" src="/lux.webp" alt="File Indexer">
       <div style="height: 70px;width: 1px;background: lightgray"></div>
       <div style="margin-left: 24px">
         <p style="font-family: monospace;font-size: 2.2em;margin: 0">File Indexer V0.0.1</p>
         <p style="font-family: monospace;font-size: 1.2em;margin: 0;font-style: italic">Made in Lëtzebuerg by Nassim Niclas Youssef</p>
       </div>
     </div>
+    <link rel="stylesheet"
+          as="style"
+          async
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap">
+
     <div ref="tabContainer"
          class="tabContainer"
          data-selected-index="0">

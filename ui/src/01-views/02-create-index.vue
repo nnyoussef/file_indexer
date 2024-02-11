@@ -25,7 +25,7 @@ export default {
       this.mapping.splice(index, 1);
     },
     resetMapping() {
-      this.mapping = [''];
+      this.mapping = [];
     }
   }
 }
@@ -34,7 +34,7 @@ export default {
 <template>
   <div
       style="display: grid; grid-template-areas:'control control' 'col1 col2' ;width: fit-content;column-gap: 50px;row-gap: 25px">
-    <div style="grid-area: col1" class="formComponent">
+    <div style="grid-area: col1;" class="formComponent">
       <div class="formTitle">
         <p>Index Name</p>
       </div>
@@ -60,7 +60,7 @@ export default {
 
       </div>
     </div>
-    <div style="grid-area: col2" class="formComponent">
+    <div style="grid-area: col2;" class="formComponent">
       <div class="formTitle">
         <p>Mappings</p>
       </div>
@@ -97,7 +97,7 @@ export default {
         </div>
       </div>
     </div>
-    <div style="grid-area: control">
+    <div style="grid-area: control;">
       <div
           style="margin-top: 18px;background: seagreen;border: none;display: inline-block;vertical-align: middle;color: white;padding: 4px;border-radius: 3px;cursor: pointer"
           @click="this.createIndex()">

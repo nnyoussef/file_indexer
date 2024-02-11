@@ -147,14 +147,19 @@ export default {
       </div>
       <div class="formBody" style=";overflow: hidden;flex-grow: 1;min-height: 0">
         <div style="max-height: 100%;overflow: auto;">
-          <table>
-            <tr v-for="(item,index) in files">
+          <table style="border-collapse: collapse">
+            <tr class="selectable" v-for="(item,index) in files">
               <td style="padding-right: 12px" v-if="item !=='No Content'">
                 <a style="color: lightseagreen;"
+                   id="download"
                    :href="getDownloadLinkFromFileName(item)"
                    class="material-symbols-outlined unselectable button">download</a>
               </td>
-              <td style="width: 500px;font-style: italic;font-family: monospace;font-size: 12pt">
+              <td style="padding-right: 12px;color: crimson" v-if="item !=='No Content'">
+                <span class="material-symbols-outlined unselectable button">list</span>
+              </td>
+              <td
+                  style="width: 500px;font-style: italic;font-family: monospace;font-size: 12pt">
                 {{ item }}
               </td>
             </tr>
@@ -171,6 +176,11 @@ export default {
 
 
 <style scoped>
+tr.selectable:hover {
+  background: aliceblue;
+  cursor: pointer;
+}
+
 option,
 select,
 label,

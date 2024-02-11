@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import jakarta.servlet.http.HttpServletResponse;
 import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
 import lu.nyo.file_indexer.jee.functions.indexation.*;
+import lu.nyo.file_indexer.jee.functions.indexation.details.GetAllIndexesInDbFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.details.GroupByIndexNameFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.file.*;
 import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.http.ContentDisposition;
@@ -87,4 +89,8 @@ public class IndexManagementRestController extends BaseRestController {
         Files.copy(fullPath, response.getOutputStream());
     }
 
+    @GetMapping("/get/details/all")
+    public Object getAllDetails() {
+        return functionsChainer.runWithResult(null, null, GetAllIndexesInDbFunction.class, GroupByIndexNameFunction.class);
+    }
 }
