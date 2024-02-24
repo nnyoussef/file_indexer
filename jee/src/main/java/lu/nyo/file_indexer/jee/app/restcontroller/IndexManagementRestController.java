@@ -3,11 +3,28 @@ package lu.nyo.file_indexer.jee.app.restcontroller;
 import com.alibaba.fastjson.JSONObject;
 import jakarta.servlet.http.HttpServletResponse;
 import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
-import lu.nyo.file_indexer.jee.functions.indexation.*;
+import lu.nyo.file_indexer.jee.functions.fetchers.FetchFileRefByIndexIdAndFileName;
+import lu.nyo.file_indexer.jee.functions.fetchers.FetchIndexIdByNameFunction;
+import lu.nyo.file_indexer.jee.functions.fetchers.GetAllIndexesWithMappingFunction;
+import lu.nyo.file_indexer.jee.functions.fetchers.IsIndexCreatedFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.CreateIndexFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.CreateIndexMappingsFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.DbSaveIndexMappingsFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.DbSaveIndexNameFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.delete_dir.IndexDeleteFromDbFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.delete_dir.IndexDeleteFromEsFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.delete_dir.IndexDeleteFromFsFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.details.GetAllIndexesInDbFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.details.GetAllMetaDataFromEsByIndexIdFileNameFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.details.GroupByIndexNameFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.file.*;
 import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
+import lu.nyo.file_indexer.jee.functions.indexation.file.delete.DeleteFileRefFromfSFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.file.delete.DeleteFileRefsFromDbFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.file.delete.DeleteFileRefsFromEsFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.rename.IndexRenameDbFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.rename.IndexRenameEsFunction;
+import lu.nyo.file_indexer.jee.functions.indexation.rename.IndexRenameFsFunction;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +40,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Map.of;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/index_management")
@@ -49,7 +68,7 @@ public class IndexManagementRestController extends BaseRestController {
 
     @GetMapping(value = "/get_all_indices")
     public Map<String, Object> getAllIndices() {
-        return functionsChainer.runWithResult(null, Map.of(), GetAllIndexesWithMappingFunction.class);
+        return functionsChainer.runWithResult(null, of(), GetAllIndexesWithMappingFunction.class);
     }
 
     @PostMapping("index/files")
@@ -71,7 +90,9 @@ public class IndexManagementRestController extends BaseRestController {
         String dateTo = request.getString("dateTo");
         Map<String, String> data = ((Map<String, String>) request.get("data"));
         GetFilesByIndexNameFunction.Input input = new GetFilesByIndexNameFunction.Input(indexName, dateFrom, dateTo, data);
-        return functionsChainer.runWithResult(input, Collections.emptyList(), GetFilesByIndexNameFunction.class, FetchFilesByIdsFunction.class);
+        return functionsChainer.runWithResult(input, Collections.emptyList(),
+                GetFilesByIndexNameFunction.class,
+                FetchFilesByIdsFunction.class);
     }
 
     @GetMapping("/download/{indexName}/{fileName}")
@@ -91,6 +112,49 @@ public class IndexManagementRestController extends BaseRestController {
 
     @GetMapping("/get/details/all")
     public Object getAllDetails() {
-        return functionsChainer.runWithResult(null, null, GetAllIndexesInDbFunction.class, GroupByIndexNameFunction.class);
+        return functionsChainer.runWithResult(null, null,
+                GetAllIndexesInDbFunction.class,
+                GroupByIndexNameFunction.class);
+    }
+
+    @DeleteMapping("/{indexName}")
+    @ResponseStatus(OK)
+    public void deleteIndex(@PathVariable("indexName") String indexName) {
+        functionsChainer.run(indexName,
+                IndexDeleteFromDbFunction.class,
+                IndexDeleteFromEsFunction.class,
+                IndexDeleteFromFsFunction.class);
+    }
+
+    @PostMapping("/rename/index")
+    @ResponseStatus(OK)
+    public void renameIndex(@RequestBody IndexRenameEsFunction.Input input) {
+        functionsChainer.run(input,
+                IndexRenameDbFunction.class,
+                IndexRenameEsFunction.class,
+                IndexRenameFsFunction.class);
+    }
+
+    @DeleteMapping("/{indexName}/{fileName}")
+    @ResponseStatus(OK)
+    public Object deleteFile(@PathVariable("indexName") String indexName,
+                             @PathVariable("fileName") String fileName) {
+        return functionsChainer.runWithResult(of("indexName", indexName, "fileName", fileName),
+                of(),
+                FetchIndexIdByNameFunction.class,
+                FetchFileRefByIndexIdAndFileName.class,
+                DeleteFileRefsFromDbFunction.class,
+                DeleteFileRefsFromEsFunction.class,
+                DeleteFileRefFromfSFunction.class);
+    }
+
+    @GetMapping("metadata/{indexName}/{fileName}")
+    Object getAllMetaDataOf(@PathVariable("indexName") String indexName,
+                            @PathVariable("fileName") String fileName) {
+        return functionsChainer.runWithResult(of("indexName", indexName, "fileName", fileName),
+                of(),
+                FetchIndexIdByNameFunction.class,
+                FetchFileRefByIndexIdAndFileName.class,
+                GetAllMetaDataFromEsByIndexIdFileNameFunction.class);
     }
 }

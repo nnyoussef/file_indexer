@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Validated
 @Component
 @CrossOrigin
-public class BaseRestController {
+public  class BaseRestController {
 
     @Autowired
     protected FunctionsChainer functionsChainer;

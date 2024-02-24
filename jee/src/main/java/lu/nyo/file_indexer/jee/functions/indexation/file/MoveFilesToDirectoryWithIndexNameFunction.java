@@ -1,6 +1,6 @@
 package lu.nyo.file_indexer.jee.functions.indexation.file;
 
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +16,7 @@ import static java.lang.String.format;
 import static java.time.ZoneOffset.UTC;
 
 @Component
-public class MoveFilesToDirectoryWithIndexNameFunction extends AbstractInteractor implements Function<Input, Input> {
+public  class MoveFilesToDirectoryWithIndexNameFunction extends AbstractFunction implements Function<Input, Input> {
     @Override
     public Input apply(Input input) {
         AtomicInteger index = new AtomicInteger();

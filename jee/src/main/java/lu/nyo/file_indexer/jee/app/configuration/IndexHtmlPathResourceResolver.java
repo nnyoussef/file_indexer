@@ -7,7 +7,7 @@ import org.springframework.web.servlet.resource.ResourceResolverChain;
 
 import java.util.List;
 
-public class IndexHtmlPathResourceResolver extends PathResourceResolver {
+public final class IndexHtmlPathResourceResolver extends PathResourceResolver {
 
     @Override
     public Resource resolveResource(HttpServletRequest request, String requestPath, List<? extends Resource> locations, ResourceResolverChain chain) {

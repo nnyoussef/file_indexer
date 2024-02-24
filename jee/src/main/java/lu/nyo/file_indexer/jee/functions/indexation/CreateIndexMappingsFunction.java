@@ -1,7 +1,7 @@
 package lu.nyo.file_indexer.jee.functions.indexation;
 
 import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 @Component
-public class CreateIndexMappingsFunction extends AbstractInteractor implements Function<IndexingRequest, IndexingRequest> {
+public  class CreateIndexMappingsFunction extends AbstractFunction implements Function<IndexingRequest, IndexingRequest> {
 
     @Override
     public IndexingRequest apply(IndexingRequest indexingRequest) {

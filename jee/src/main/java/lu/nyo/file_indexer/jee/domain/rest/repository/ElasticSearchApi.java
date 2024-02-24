@@ -1,4 +1,4 @@
-package lu.nyo.file_indexer.jee.domain.rest;
+package lu.nyo.file_indexer.jee.domain.rest.repository;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +32,17 @@ public interface ElasticSearchApi {
     Map<String, Object> searchByIndexAndIndices(@PathVariable("indexName") String indexName,
                                                 @RequestBody Map<String, Object> data);
 
+    @DeleteMapping(value = "/{indexName}")
+    Object deleteIndex(@PathVariable("indexName") String indexName);
+
+    @PostMapping(value = "/_reindex")
+    Object indexRename(@RequestBody Map<String, Object> data);
+
+    @DeleteMapping("/{index}/_doc/{_id}")
+    Object deleteDoc(@PathVariable("index") String index,
+                     @PathVariable("_id") String id);
+
+    @GetMapping("/{index}/_doc/{_id}")
+    Map<String, Object> getDoc(@PathVariable("index") String index,
+                               @PathVariable("_id") String id);
 }

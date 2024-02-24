@@ -1,7 +1,7 @@
 package lu.nyo.file_indexer.jee.functions.indexation.details;
 
 import lu.nyo.file_indexer.jee.domain.bdd.queryresults.AllIndexesWithFileDetails;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.*;
 
 @Service
 @Lazy
-public class GroupByIndexNameFunction extends AbstractInteractor implements Function<List<AllIndexesWithFileDetails>, Object> {
+public  class GroupByIndexNameFunction extends AbstractFunction implements Function<List<AllIndexesWithFileDetails>, Object> {
     @Override
     public Object apply(List<AllIndexesWithFileDetails> allIndexesWithFileDetails) {
         return allIndexesWithFileDetails.stream()

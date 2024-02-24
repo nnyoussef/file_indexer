@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "app.web")
-public class ApplicationStorage {
+public final class ApplicationStorage {
 
     private String basepath;
 

@@ -7,10 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "compress": "gzipper compress --brotli ./dist ./out",
+    "compress": "gzipper compress --verbose --brotli ./dist ./out",
     "clean": "rimraf  dist  out",
     "include_404": "copyfiles ./dist/index.html ./dist/404 && move-file ./dist/404/dist/index.html ./dist/404.html && rimraf dist/404",
-    "deploy": " http-server ./out -b -c 0",
+    "deploy": " http-server ./out -b -c 3000000000",
     "prod": "npm run clean && npm run build &&  npm run include_404 && npm run compress && npm run deploy"
   },
   "dependencies": {

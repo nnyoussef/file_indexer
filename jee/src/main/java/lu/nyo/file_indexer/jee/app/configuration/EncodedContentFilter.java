@@ -11,7 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class EncodedContentFilter extends OncePerRequestFilter {
+public final class EncodedContentFilter extends OncePerRequestFilter {
 
 
     @Override

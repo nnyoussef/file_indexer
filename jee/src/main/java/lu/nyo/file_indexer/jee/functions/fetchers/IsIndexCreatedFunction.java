@@ -1,7 +1,7 @@
-package lu.nyo.file_indexer.jee.functions.indexation;
+package lu.nyo.file_indexer.jee.functions.fetchers;
 
 import feign.FeignException;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import lu.nyo.file_indexer.jee.app.dto.request.IndexingRequest;
 import lu.nyo.file_indexer.jee.app.dto.response.exceptions.DirectoryManagementException;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.function.Function;
 import static lu.nyo.file_indexer.jee.app.dto.response.exceptions.DirectoryManagementException.DirectoryManagementErrors.PATH_ALREADY_CREATED;
 
 @Component
-public class IsIndexCreatedFunction extends AbstractInteractor implements Function<IndexingRequest, IndexingRequest> {
+public  class IsIndexCreatedFunction extends AbstractFunction implements Function<IndexingRequest, IndexingRequest> {
 
     @Override
     public IndexingRequest apply(IndexingRequest indexingRequest) {
