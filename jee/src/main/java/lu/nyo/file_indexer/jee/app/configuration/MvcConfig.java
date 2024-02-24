@@ -24,7 +24,7 @@ import static org.springframework.http.CacheControl.maxAge;
 
 @EnableWebMvc
 @Configuration
-public class MvcConfig implements WebMvcConfigurer {
+public  class MvcConfig implements WebMvcConfigurer {
 
     @Value("${app.web.basepath}")
     private String appWebBasePath;
@@ -51,8 +51,6 @@ public class MvcConfig implements WebMvcConfigurer {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         List<MediaType> mediaTypeList = new ArrayList<MediaType>();
         mediaTypeList.add(new MediaType("application", "json", StandardCharsets.UTF_8));
-        mediaTypeList.add(new MediaType("application", "json", StandardCharsets.UTF_8));
-        mediaTypeList.add(new MediaType("text", "html", StandardCharsets.UTF_8));
         fastConverter.setSupportedMediaTypes(mediaTypeList);
 
         FastJsonConfig fastJsonConfig = getFastJsonConfig();
@@ -62,11 +60,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     private static FastJsonConfig getFastJsonConfig() {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setFeatures(Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames,
-                Feature.DisableCircularReferenceDetect);
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteNullStringAsEmpty);
+        fastJsonConfig.setFeatures(Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames);
         fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteDateUseDateFormat);
-        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        fastJsonConfig.setDateFormat("dd-MM-yyyy HH:mm:ss");
         return fastJsonConfig;
     }
 }

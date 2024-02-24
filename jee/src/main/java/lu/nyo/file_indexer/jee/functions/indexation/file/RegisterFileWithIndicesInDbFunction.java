@@ -1,7 +1,7 @@
 package lu.nyo.file_indexer.jee.functions.indexation.file;
 
 import lu.nyo.file_indexer.jee.domain.bdd.entities.IndexedFile;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 @Component
-public class RegisterFileWithIndicesInDbFunction extends AbstractInteractor implements Function<RegisterFileWithIndicesInDbFunction.Input, Void> {
+public  class RegisterFileWithIndicesInDbFunction extends AbstractFunction implements Function<RegisterFileWithIndicesInDbFunction.Input, Void> {
 
     @Override
     public Void apply(Input input) {

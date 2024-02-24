@@ -1,14 +1,14 @@
 package lu.nyo.file_indexer.jee.functions.indexation;
 
 import lu.nyo.file_indexer.jee.domain.bdd.entities.IndexesMappingEntity;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.function.Function;
 
 @Component
-public class DbSaveIndexMappingsFunction extends AbstractInteractor implements Function<DbSaveIndexMappingsFunction.Input, Void> {
+public  class DbSaveIndexMappingsFunction extends AbstractFunction implements Function<DbSaveIndexMappingsFunction.Input, Void> {
 
     @Override
     public Void apply(Input indexingRequest) {

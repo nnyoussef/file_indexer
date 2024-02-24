@@ -4,11 +4,10 @@ import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 
 const router = useRouter();
+
 const tabContainer = ref(null)
 onMounted(() => {
-  router.push({path: '/create_index'}).then(() => {
-    tabClicked(1);
-  })
+
 })
 
 const tabClicked = (selectedElPosition: number) => {
@@ -32,13 +31,14 @@ const tabClicked = (selectedElPosition: number) => {
 
 <template>
   <div style="display: flex;flex-direction: column;height: 100%;min-height: 0;width: 100%">
-    <div style="display: flex;align-items: center;">
-      <img style="margin-right: 24px" height="80" width="80" src="/logo.png" alt="File Indexer">
-      <img style="margin-right: 24px" height="104" width="90" src="/lux.png" alt="File Indexer">
+    <div style="display: flex;align-items: center;contain: layout">
+      <img style="margin-right: 24px" height="80" width="80" src="/logo.webp" alt="File Indexer">
+      <img style="margin-right: 24px" height="104" width="90" src="/lux.webp" alt="File Indexer">
       <div style="height: 70px;width: 1px;background: lightgray"></div>
       <div style="margin-left: 24px">
         <p style="font-family: monospace;font-size: 2.2em;margin: 0">File Indexer V0.0.1</p>
-        <p style="font-family: monospace;font-size: 1.2em;margin: 0;font-style: italic">Made in Lëtzebuerg by Nassim Niclas Youssef</p>
+        <p style="font-family: monospace;font-size: 1.2em;margin: 0;font-style: italic">Made in Lëtzebuerg by Nassim
+          Niclas Youssef</p>
       </div>
     </div>
     <div ref="tabContainer"
@@ -62,7 +62,11 @@ const tabClicked = (selectedElPosition: number) => {
       </div>
     </div>
     <div style="flex-grow: 1;margin-top: 16px;min-height: 0">
-      <RouterView/>
+      <RouterView default="{name: ''}"/>
+      <link rel="stylesheet"
+            as="style"
+            async
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap">
     </div>
   </div>
 
@@ -71,6 +75,7 @@ const tabClicked = (selectedElPosition: number) => {
 <style scoped>
 
 .tabContainer {
+  contain: size;
   height: 35px;
   margin-top: 24px;
   display: flex;
@@ -111,6 +116,7 @@ const tabClicked = (selectedElPosition: number) => {
   font-weight: normal;
   color: midnightblue;
 }
+
 .tab > img {
   padding-left: 16px;
 }

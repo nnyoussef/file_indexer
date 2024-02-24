@@ -1,6 +1,6 @@
 package lu.nyo.file_indexer.jee.functions.indexation.file;
 
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import static lu.nyo.file_indexer.jee.functions.indexation.file.GetFilesByIndexN
 
 @Service
 @Lazy
-public class GetFilesByIndexNameFunction extends AbstractInteractor implements Function<Input, List<String>> {
+public  class GetFilesByIndexNameFunction extends AbstractFunction implements Function<Input, List<String>> {
 
     @Override
     public List<String> apply(Input input) {

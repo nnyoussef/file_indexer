@@ -35,7 +35,9 @@ export default {
     indexName: '',
     files: ['No Content'],
     dateFrom: 0,
-    dateTo: Date.now()
+    dateTo: Date.now(),
+    metadata: {},
+    selectedFile: ''
   }),
   mounted() {
     axios.get('http://localhost:8080/index_management/get_all_indices').subscribe(e => {
@@ -66,6 +68,18 @@ export default {
     },
     getDownloadLinkFromFileName(fileName) {
       return `http://localhost:8080/index_management/download/${this.indexName}/${fileName}`;
+    },
+    closeDialogBox(id) {
+      document.getElementById(id).close()
+    },
+    openDialogBox(id) {
+      document.getElementById(id).showModal()
+    },
+    getFileMetaData() {
+      this.openDialogBox('metadata');
+      axios.get(`http://localhost:8080/index_management/metadata/${this.indexName}/${this.selectedFile}`).subscribe(d => {
+        this.metadata = d.data;
+      });
     }
   }
 }
@@ -77,7 +91,7 @@ export default {
 
     <div style="grid-row: 1/2">
       <div @click="submit()"
-           style="margin-top: 0;background: lightseagreen;border: none;display: inline-block;vertical-align: middle;color: white;padding: 4px;border-radius: 3px;cursor: pointer">
+           style="margin-top: 18px;background: lightseagreen;border: none;display: inline-block;vertical-align: middle;color: white;padding: 4px;border-radius: 3px;cursor: pointer">
           <span style="display: inline-block;vertical-align: middle;font-size: 14pt"
                 class="material-symbols-outlined unselectable">
             search
@@ -88,7 +102,7 @@ export default {
       </div>
     </div>
 
-    <div style="grid-row: 2/3" class="formComponent">
+    <div style="grid-row: 2/3;margin-top: 12px" class="formComponent">
       <div class="formTitle">
         <p>Search Criteria</p>
       </div>
@@ -141,20 +155,26 @@ export default {
       </div>
     </div>
 
-    <div style="grid-row: 2/3" class="formComponent">
+    <div style="grid-row: 2/3;margin-top: 12px" class="formComponent">
       <div class="formTitle">
         <p>Results</p>
       </div>
       <div class="formBody" style=";overflow: hidden;flex-grow: 1;min-height: 0">
         <div style="max-height: 100%;overflow: auto;">
-          <table>
-            <tr v-for="(item,index) in files">
+          <table style="border-collapse: collapse">
+            <tr class="selectable" v-for="(item,index) in files">
               <td style="padding-right: 12px" v-if="item !=='No Content'">
                 <a style="color: lightseagreen;"
+                   id="download"
                    :href="getDownloadLinkFromFileName(item)"
                    class="material-symbols-outlined unselectable button">download</a>
               </td>
-              <td style="width: 500px;font-style: italic;font-family: monospace;font-size: 12pt">
+              <td @click="selectedFile=item;getFileMetaData()" style="padding-right: 12px;color: crimson"
+                  v-if="item !=='No Content'">
+                <span class="material-symbols-outlined unselectable button">list</span>
+              </td>
+              <td
+                  style="width: 500px;font-style: italic;font-family: monospace;font-size: 12pt">
                 {{ item }}
               </td>
             </tr>
@@ -163,6 +183,29 @@ export default {
       </div>
     </div>
   </div>
+  <dialog id="metadata"
+          style="border: 2px solid lightseagreen;padding: 12px;border-radius: 5px">
+    <p style="font-size: 16pt;margin-top: 0" class="label">Meta Data for {{ indexName }}/{{ selectedFile }}</p>
+    <section style="max-height: 400px;overflow: auto;">
+      <table>
+        <tr v-for="(data,index) in Object.entries(metadata)">
+          <td><p class="label">{{ data[0] }}</p></td>
+          <td><input type="text" disabled :value="data[1]"></td>
+        </tr>
+      </table>
+    </section>
+    <section>
+      <div @click="closeDialogBox('metadata')"
+           style="width:224px;margin-top: 24px;background: midnightblue;border: none;display: inline-block;vertical-align: middle;color: white;padding: 4px;border-radius: 3px;cursor: pointer">
+          <span style="display: inline-block;vertical-align: middle" class="material-symbols-outlined unselectable">
+            close
+            </span>
+        <p class="unselectable"
+           style="margin: 0 0 0 12px;display: inline-block;vertical-align: middle;font-family: monospace;font-size: 12pt">
+          Cancel</p>
+      </div>
+    </section>
+  </dialog>
   <iframe popover
           id="indexDoc"
           :src="`http://localhost:8080/file_repo/${indexName}_description.html`"
@@ -171,6 +214,11 @@ export default {
 
 
 <style scoped>
+tr.selectable:hover {
+  background: aliceblue;
+  cursor: pointer;
+}
+
 option,
 select,
 label,

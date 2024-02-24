@@ -1,7 +1,7 @@
 package lu.nyo.file_indexer.jee.functions.indexation.file;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import lu.nyo.file_indexer.jee.functions.AbstractInteractor;
+import lu.nyo.file_indexer.jee.functions.AbstractFunction;
 import lu.nyo.file_indexer.jee.functions.indexation.file.MoveFilesToDirectoryWithIndexNameFunction.Input;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 @Component
 @Lazy
-public class InsertIndicesInEsFunction extends AbstractInteractor implements Function<Input, RegisterFileWithIndicesInDbFunction.Input> {
+public  class InsertIndicesInEsFunction extends AbstractFunction implements Function<Input, RegisterFileWithIndicesInDbFunction.Input> {
 
     @Override
     public RegisterFileWithIndicesInDbFunction.Input apply(Input input) {
